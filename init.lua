@@ -1,12 +1,12 @@
 -- Error theme:
-vim.cmd('colorscheme habamax')
+-- vim.cmd('colorscheme habamax')
 --0=========================================================================0
 -- █▀ █▀▀ ▀█▀ ▀█▀ █ █▄░█ █▀▀ █▀
 -- ▄█ ██▄ ░█░ ░█░ █ █░▀█ █▄█ ▄█
 --0=========================================================================0
 
 -- Global Settings
-vim.g.mapleader = ' '  -- Setting the leader key
+vim.g.mapleader = ' ' -- Setting the leader key
 
 -- Keymap Variables
 local rm = vim.keymap.set
@@ -22,8 +22,9 @@ vim.opt.softtabstop = 4
 vim.opt.smarttab = true
 vim.opt.tabstop = 4
 
+
 -- Display Settings
-vim.opt.cursorline = true
+vim.opt.cursorline = false
 vim.opt.expandtab = true
 vim.opt.lazyredraw = true
 vim.opt.mouse = 'a'
@@ -35,8 +36,8 @@ vim.opt.wildmenu = true
 vim.opt.wrap = false
 vim.opt.completeopt = 'menuone,preview,noselect'
 vim.opt.updatetime = 50
-vim.opt.scrolloff = 5
-vim.opt.signcolumn = 'yes'
+vim.opt.scrolloff = 10
+vim.opt.signcolumn = 'no'
 
 -- List and Match Settings
 vim.opt.list = true
@@ -49,7 +50,7 @@ vim.opt.clipboard = 'unnamedplus'
 vim.opt.encoding = 'utf-8'
 
 -- Search and Case Settings
-vim.opt.hlsearch = true
+vim.opt.hlsearch = false
 vim.opt.ignorecase = true
 vim.opt.incsearch = true
 vim.opt.smartcase = true
@@ -66,72 +67,86 @@ vim.opt.number = true
 -- Search centering
 rm('n', 'n', 'nzz')
 rm('n', 'N', 'Nzz')
+
 -- Deleting letters going to vim.oid
 rm('n', 'x', '"_x')
 rm('v', 'x', '"_x')
+
 -- format pasted line.
 rm('n', 'p', 'p==')
 
 -- page movement up/down
-rm('n', '<C-k>', '<S-Up>zz')
-rm('n', '<C-j>', '<S-Down>zz')
-rm('v', '<C-k>', '<S-Up>zz')
-rm('v', '<C-j>', '<S-Down>zz')
+rm('n', '<A-u>', '<S-Up>zz')
+rm('n', '<A-d>', '<S-Down>zz')
+rm('v', '<A-u>', '<S-Up>zz')
+rm('v', '<A-d>', '<S-Down>zz')
+
 -- Save file
-rm('n', '<C-s>', ':w<CR>')
+rm('n', '<leader>w', ':w<CR>')
+
+-- quit
+rm("n", '<leader>q', ':q<cr>')
+
+-- jk to escape
+rm("i", "jk", "<ESC>")
+rm("i", "jj", "<ESC>")
+
 -- Move selected lines with alt arrows like in subl
 rm('v', '<A-k>', ":m '<-2<CR>gv=gv")
 rm('v', '<A-j>', ":m '>+1<CR>gv=gv")
 rm('n', '<A-k>', ':m .-2<cr>==')
 rm('n', '<A-j>', ':m .+1<cr>==')
--- vertical split
-rm('n', '<leader>+', '<Cmd>vsplit<CR>')
--- horizontal split
-rm('n', '<leader>-', '<Cmd>split<CR>')
+
+-- split
+rm('n', '<leader>|', '<Cmd>vsplit<CR>') -- vertical split
+rm('n', '<leader>_', '<Cmd>split<CR>')  -- horizontal split
+
 -- Move in splits with hjkl
-rm('n', '<leader>h', '<Cmd>wincmd h<CR>')
-rm('n', '<leader>j', '<Cmd>wincmd j<CR>')
-rm('n', '<leader>k', '<Cmd>wincmd k<CR>')
-rm('n', '<leader>l', '<Cmd>wincmd l<CR>')
-rm('t', '<leader>h', '<Cmd>wincmd h<CR>')
-rm('t', '<leader>j', '<Cmd>wincmd j<CR>')
-rm('t', '<leader>k', '<Cmd>wincmd k<CR>')
-rm('t', '<leader>l', '<Cmd>wincmd l<CR>')
+rm('n', '<leader-h>', '<Cmd>wincmd h<CR>')
+rm('n', '<C-j>', '<Cmd>wincmd j<CR>')
+rm('n', '<C-k>', '<Cmd>wincmd k<CR>')
+rm('n', '<C-l>', '<Cmd>wincmd l<CR>')
+rm('t', '<C-h>', '<Cmd>wincmd h<CR>')
+rm('t', '<C-j>', '<Cmd>wincmd j<CR>')
+rm('t', '<C-k>', '<Cmd>wincmd k<CR>')
+rm('t', '<C-l>', '<Cmd>wincmd l<CR>')
+
 -- Resize splits
 rm('n', '<S-Left>', '<Cmd>vertical resize -2<CR>')
 rm('n', '<S-Right>', '<Cmd>vertical resize +2<CR>')
 rm('n', '<S-Up>', '<Cmd>resize -2<CR>')
 rm('n', '<S-Down>', '<Cmd>resize +2<CR>')
+
 -- Indent/Unindent selected text with Tab and Shift+Tab
 rm('v', '>', '>gv')
 rm('v', '<', '<gv')
--- Remove search HL
-rm('n', '<leader>h', '<Cmd>nohlsearch<CR>')
+
 --0=========================================================================0
 -- █░░ ▄▀█ ▀█ █▄█
 -- █▄▄ █▀█ █▄ ░█░
 --0=========================================================================0
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim' -- Lazy bootstrap starts here
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    'git',
-    'clone',
-    '--filter=blob:none',
-    'https://github.com/folke/lazy.nvim.git',
-    '--branch=stable', -- latest stable release
-    lazypath,
-  })
+    vim.fn.system({
+        'git',
+        'clone',
+        '--filter=blob:none',
+        'https://github.com/folke/lazy.nvim.git',
+        '--branch=stable', -- latest stable release
+        lazypath,
+    })
 end
-vim.opt.rtp:prepend(lazypath)                                -- Ends here, this should be left alone.
+vim.opt.rtp:prepend(lazypath) -- Ends here, this should be left alone.
 --0=========================================================================0
 -- █▀█ █░░ █░█ █▀▀ █ █▄░█ █▀   █▀ ▀█▀ ▄▀█ █▀█ ▀█▀   █░█ █▀▀ █▀█ █▀▀
 -- █▀▀ █▄▄ █▄█ █▄█ █ █░▀█ ▄█   ▄█ ░█░ █▀█ █▀▄ ░█░   █▀█ ██▄ █▀▄ ██▄
 --0=========================================================================0
 require("lazy").setup({
     {
-        "leet0rz/modified-moonlight.nvim", -- this is the theme
+        "bluz71/vim-nightfly-colors", -- this is the theme
+        name = "nightfly",
         config = function()
-            vim.cmd("colorscheme moonlight") -- this applies the theme
+            vim.cmd("colorscheme nightfly") -- this applies the theme
         end
     },
     {
@@ -144,8 +159,8 @@ require("lazy").setup({
         'terrortylor/nvim-comment',
         config = function()
             -- remaps
-            rm('n', "'", ':CommentToggle<CR>')
-            rm('v', "'", ':CommentToggle<CR>')
+            rm('n', "<leader>/", ':CommentToggle<CR>')
+            rm('v', "<leader>/", ':CommentToggle<CR>')
             require('nvim_comment').setup()
         end
 
@@ -162,7 +177,8 @@ require("lazy").setup({
             -- remaps
             local builtin = require('telescope.builtin')
             rm('n', '<leader>ff', builtin.find_files)
-            rm('n', '<leader>fg', builtin.live_grep)
+            rm('n', '<leader><leader>', builtin.find_files)
+            rm('n', '<leader>fw', builtin.live_grep)
             rm('n', '<leader>fb', builtin.buffers)
             rm('n', '<leader>fh', builtin.help_tags)
             -- telescope's setup
@@ -184,18 +200,18 @@ require("lazy").setup({
         end
     },
     --0=============================================================================================0
-    -- █▀█ █ █░░
+    -- █▀█ █ █
     -- █▄█ █ █▄▄
     --0=============================================================================================0
     {
         'stevearc/oil.nvim',
         config = function()
             -- remaps
-            rm('n', '<leader>o', ':Oil<CR>')
+            rm('n', '<leader>e', ':Oil<CR>')
             require('oil').setup({
                 default_file_explorer = true,
                 keymaps = {
-                    ['<C-s>'] = ':w<CR>',
+                    ['<leader>w'] = ':w<CR>',
                 },
                 view_options = { show_hidden = true },
             })
@@ -206,7 +222,7 @@ require("lazy").setup({
     -- ░█░ █▀▄ ██▄ ██▄ ▄█ █▀█ █ ░█░ ░█░ ██▄ █▀▄
     --0=============================================================================================0
     {
-        'nvim-treesitter/nvim-treesitter', 
+        'nvim-treesitter/nvim-treesitter',
         build = ":TSUpdate",
         config = function()
             -- ENABLES THIS IF USING WINDOWS:
@@ -216,7 +232,7 @@ require("lazy").setup({
                 -- Install parsers synchronously (only applied to `ensure_installed`)
                 sync_install = false,
                 -- Automatically install missing parsers when entering buffer
-                auto_install = false,
+                auto_install = true,
                 highlight = {
                     enable = true,
                 },
@@ -228,25 +244,25 @@ require("lazy").setup({
     -- █▄▄ █▄█ █▀█ █▄▄ █ █░▀█ ██▄
     --0=============================================================================================0
     {
-    'nvim-lualine/lualine.nvim',
-    config = function()
-        vim.o.showmode = false
-        require('lualine').setup({
-            options = {
-                icons_enabled = true,
-                -- theme = 'dracula',
-            },
-            -- this part shows full path, helps navigate in Oil.
-            sections = {
-                lualine_c = { { 'filename', path = 2 } }
-            }
-        })
-    end
+        'nvim-lualine/lualine.nvim',
+        config = function()
+            vim.o.showmode = false
+            require('lualine').setup({
+                options = {
+                    icons_enabled = true,
+                    theme = 'nightfly',
+                },
+                -- this part shows full path, helps navigate in Oil.
+                sections = {
+                    lualine_c = { { 'filename', path = 2 } }
+                }
+            })
+        end
     },
 
     --0=============================================================================================0
     -- █▀▄▀█ ▄▀█ █▀ █▀█ █▄░█
-    -- █░▀░█ █▀█ ▄█ █▄█ █░▀█    
+    -- █░▀░█ █▀█ ▄█ █▄█ █░▀█
     --0=============================================================================================0
     {
         'williamboman/mason.nvim',
@@ -271,7 +287,7 @@ require("lazy").setup({
             -- █░░ █░█ ▄▀█
             -- █▄▄ █▄█ █▀█
             --0=============================================================================================0
-            lspconfig.lua_ls.setup ({
+            lspconfig.lua_ls.setup({
                 on_attach = custom_attach,
                 capabilities = capabilities,
                 settings = {
@@ -286,7 +302,7 @@ require("lazy").setup({
                         workspace = {
                             checkThirdParty = false,
                             library = {
-                              vim.env.VIMRUNTIME,
+                                vim.env.VIMRUNTIME,
                             },
                         },
                         telemetry = { enable = false },
@@ -335,6 +351,29 @@ require("lazy").setup({
                     ['<C-Space>'] = cmp.mapping.complete(),
                     ['<C-e>'] = cmp.mapping.abort(),
                     ['<CR>'] = cmp.mapping.confirm({ select = true }),
+                    ["<Tab>"] = cmp.mapping(function(fallback)
+                        if cmp.visible() then
+                            -- You could replace select_next_item() with confirm({ select = true }) to get VS Code autocompletion behavior
+                            cmp.select_next_item()
+                            -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
+                            -- this way you will only jump inside the snippet region
+                        elseif luasnip.expand_or_jumpable() then
+                            luasnip.expand_or_jump()
+                        elseif has_words_before() then
+                            cmp.complete()
+                        else
+                            fallback()
+                        end
+                    end, { "i", "s" }),
+                    ["<S-Tab>"] = cmp.mapping(function(fallback)
+                        if cmp.visible() then
+                            cmp.select_prev_item()
+                        elseif luasnip.jumpable(-1) then
+                            luasnip.jump(-1)
+                        else
+                            fallback()
+                        end
+                    end, { "i", "s" }),
                 }),
                 sources = cmp.config.sources({
                     { name = 'nvim_lsp' },
