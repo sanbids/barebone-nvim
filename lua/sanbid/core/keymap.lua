@@ -22,6 +22,12 @@ rm('n', '<A-d>', '<S-Down>zz')
 rm('v', '<A-u>', '<S-Up>zz')
 rm('v', '<A-d>', '<S-Down>zz')
 
+--lsp
+rm('n', '<leader>lf', function() vim.lsp.buf.format() end)
+rm('n', '<leader>lr', function() vim.lsp.buf.rename() end)
+rm('n', '<leader>la', function() vim.lsp.buf.code_action()  end)
+rm('n', 'K', function() vim.lsp.buf.hover()  end)
+
 -- Save file
 rm('n', '<leader>w', ':w<CR>')
 
@@ -58,3 +64,18 @@ rm('n', '<S-Down>', '<Cmd>resize +2<CR>')
 rm('v', '>', '>gv')
 rm('v', '<', '<gv')
 
+-- Abbrev
+vim.cmd("cnoreabbrev Q  q")
+vim.cmd("cnoreabbrev q1  q!")
+vim.cmd("cnoreabbrev Q1  q!")
+vim.cmd("cnoreabbrev Qa1 qa!")
+vim.cmd("cnoreabbrev Qa qa")
+vim.cmd("cnoreabbrev W  w")
+vim.cmd("cnoreabbrev Wq wq")
+vim.cmd("cnoreabbrev WQ wq")
+vim.cmd("cnoreabbrev Set set")
+vim.cmd("cnoreabbrev SEt set")
+vim.cmd("cnoreabbrev SET set")
+
+rm("v", "<leader>sr", '"hy:%s/<C-r>h//g<left><left>') -- Replace all instances of highlighted words
+rm("n", "<leader>sr", '"hy:%s/<C-r>h//g<left><left>') -- Replace all instances of highlighted words

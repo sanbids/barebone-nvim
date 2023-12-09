@@ -14,6 +14,7 @@ return    {
             vim.keymap.set('n', '<leader>fw', builtin.live_grep)
             vim.keymap.set('n', '<leader>fb', builtin.buffers)
             vim.keymap.set('n', '<leader>fh', builtin.help_tags)
+            vim.keymap.set('n', '<leader>fr', builtin.oldfiles)
             -- telescope's setup
             require('telescope').setup {
                 defaults = {

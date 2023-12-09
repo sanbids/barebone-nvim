@@ -20,6 +20,8 @@ vim.opt.softtabstop = 4
 vim.opt.smarttab = true
 vim.opt.tabstop = 4
 
+-- vim cursor
+vim.opt.guicursor = ""
 
 -- Display Settings
 vim.opt.cursorline = false
@@ -39,7 +41,7 @@ vim.opt.signcolumn = 'no'
 
 -- List and Match Settings
 vim.opt.list = true
-vim.opt.listchars = { tab = "   ", leadmultispace = '│   ' }
+vim.opt.listchars = { tab = "   ", leadmultispace = '│   ', eol=" " }
 vim.opt.showmatch = true
 
 -- GUI and Encoding Settings
