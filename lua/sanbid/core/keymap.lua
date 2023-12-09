@@ -45,7 +45,7 @@ rm('n', '<leader>|', '<Cmd>vsplit<CR>') -- vertical split
 rm('n', '<leader>_', '<Cmd>split<CR>')  -- horizontal split
 
 -- Move in splits with hjkl
-rm('n', '<leader-h>', '<Cmd>wincmd h<CR>')
+rm('n', '<C-h>', '<Cmd>wincmd h<CR>')
 rm('n', '<C-j>', '<Cmd>wincmd j<CR>')
 rm('n', '<C-k>', '<Cmd>wincmd k<CR>')
 rm('n', '<C-l>', '<Cmd>wincmd l<CR>')
@@ -79,3 +79,13 @@ vim.cmd("cnoreabbrev SET set")
 
 rm("v", "<leader>sr", '"hy:%s/<C-r>h//g<left><left>') -- Replace all instances of highlighted words
 rm("n", "<leader>sr", '"hy:%s/<C-r>h//g<left><left>') -- Replace all instances of highlighted words
+
+-- Automatically Pair brackets, parethesis, and quotes
+rm("i", "'", "''<left>")
+rm("i", '"', '""<left>')
+rm("i", "(", "()<left>")
+rm("i", "[", "[]<left>")
+rm("i", "{", "{}<left>")
+rm("i", "{;", "{};<left><left>")
+rm("i", "/*", "/**/<left><left>")
+------------------------------

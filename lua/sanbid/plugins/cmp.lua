@@ -13,7 +13,6 @@ return    {
         },
         config = function()
             local cmp = require('cmp')
-            local cmp_ap = require('nvim-autopairs.completion.cmp')
             local luasnip = require('luasnip')
             luasnip.config.setup {}
             cmp.setup({
@@ -23,11 +22,6 @@ return    {
                     end,
                 },
 
-                -- border
-                -- window = {
-                --     completion = cmp.config.window.bordered(),
-                --     documentation = cmp.config.window.bordered()
-                -- },
                 mapping = cmp.mapping.preset.insert({
                     ['<C-b>'] = cmp.mapping.scroll_docs(-4),
                     ['<C-f>'] = cmp.mapping.scroll_docs(4),
@@ -64,11 +58,6 @@ return    {
                     { name = 'path' },
                 }),
             })
-            -- bracket completion for lua
-            cmp.event:on(
-                'confirm_done',
-                cmp_ap.on_confirm_done()
-            )
         end
     }
 

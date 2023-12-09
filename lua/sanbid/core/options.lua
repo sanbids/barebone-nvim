@@ -3,58 +3,59 @@
 -- ▄█ ██▄ ░█░ ░█░ █ █░▀█ █▄█ ▄█
 --0=========================================================================0
 
+local opt = vim.opt
 -- Global Settings
 vim.g.mapleader = ' ' -- Setting the leader key
 
--- Keymap Variables
-local rm = vim.keymap.set
-
 -- Terminal and Title Settings
-vim.opt.title = true
-vim.opt.titlestring = '%t'
+opt.title = true
+opt.titlestring = '%t'
 
 -- Indentation and Formatting Settings
-vim.opt.autoindent = true
-vim.opt.shiftwidth = 4
-vim.opt.softtabstop = 4
-vim.opt.smarttab = true
-vim.opt.tabstop = 4
+opt.autoindent = true
+opt.shiftwidth = 4
+opt.softtabstop = 4
+opt.smarttab = true
+opt.tabstop = 4
 
 -- vim cursor
-vim.opt.guicursor = ""
+opt.guicursor = ""
 
 -- Display Settings
-vim.opt.cursorline = false
-vim.opt.expandtab = true
-vim.opt.lazyredraw = true
-vim.opt.mouse = 'a'
-vim.opt.ruler = true
-vim.opt.showcmd = true
-vim.opt.syntax = 'enable'
-vim.opt.timeoutlen = 300
-vim.opt.wildmenu = true
-vim.opt.wrap = false
-vim.opt.completeopt = 'menuone,preview,noselect'
-vim.opt.updatetime = 50
-vim.opt.scrolloff = 10
-vim.opt.signcolumn = 'no'
+opt.cursorline = false
+opt.expandtab = true
+opt.lazyredraw = true
+opt.mouse = 'a'
+opt.ruler = true
+opt.showcmd = true
+opt.syntax = 'enable'
+opt.timeoutlen = 300
+opt.wildmenu = true
+opt.wrap = false
+opt.completeopt = 'menuone,preview,noselect'
+opt.updatetime = 50
+opt.scrolloff = 10
+opt.signcolumn = 'no'
 
 -- List and Match Settings
-vim.opt.list = true
-vim.opt.listchars = { tab = "   ", leadmultispace = '│   ', eol=" " }
-vim.opt.showmatch = true
+opt.list = true
+opt.listchars = { tab = "   ", leadmultispace = '│   ', eol=" " }
+opt.showmatch = true
 
 -- GUI and Encoding Settings
-vim.opt.termguicolors = true
-vim.opt.clipboard = 'unnamedplus'
-vim.opt.encoding = 'utf-8'
+opt.termguicolors = true
+opt.clipboard = 'unnamedplus'
+opt.encoding = 'utf-8'
 
 -- Search and Case Settings
-vim.opt.hlsearch = false
-vim.opt.ignorecase = true
-vim.opt.incsearch = true
-vim.opt.smartcase = true
-vim.opt.smartindent = true
+opt.hlsearch = false
+opt.ignorecase = true
+opt.incsearch = true
+opt.smartcase = true
+opt.smartindent = true
 
 -- Line Number Settings
-vim.opt.number = true
+opt.number = true
+opt.fillchars = {
+    eob = " "
+}
